@@ -2,6 +2,11 @@ name:CI-CD
 
 on: [push]
 
+# on:
+#   # Triggers the workflow on push or pull request events but only for the main branch
+#   push:
+#     branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,25 +15,25 @@ jobs:
     #     node-version: [12.x]
 
     steps:
-      # 使用别人的action
+      # 使用第三方的action代码检查
       uses: actions/checkout@v2
       # 步骤名称
-      name: pm install
+    - name: npm install
       # 步骤执行指令
       run: npm install
-    - name: pm run build
+    - name: npm run build
       run: npm run build
       # 命名这个任务为发布Deploy
     - name: Deploy
       # 因为构建之后，需要把代码上传到服务器上，所以需要连接到ssh，并且做一个拷贝操作
       uses: cross-the-world/scp-pipeline@master
       env:
-      WELCOME: "ssh scp ssh pipelines"
-      LASTSSH: "Doing something after copying"
+        WELCOME: "ssh scp ssh pipelines"
+        LASTSSH: "Doing something after copying"
       with:
-        host: ${{"secrets.USER_HOST }}
-        user: ${{ secrets.USER NAME }}
-        bass: $ff secrets.USER PASS 17
+        host: ${{ secrets.USER_HOST }}
+        user: ${{ secrets.USER_NAME }}
+        pass: ${{ secrets.USER_PASS }}
         connect_timeout: 10s
         local:  './dist/*'
         remote: /home/www/dist
