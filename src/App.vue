@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <count />
+    <person /> -->
+    <ele />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import 'animate.css'
+// import count from './components/Count.vue'
+// import count from './components/CountVuex.vue'
+// import person from './pages/Person.vue'
+import ele from './pages/ElementCom.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ele
   }
 }
 </script>
@@ -24,5 +28,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  width: 100%;
 }
 </style>
